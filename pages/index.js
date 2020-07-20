@@ -3,12 +3,12 @@ import { useState } from "react";
 import { db } from "../src/api/db";
 import { isEmail } from "../src/utils";
 
-// const hoverBoxShadow = css`
-//   transition: box-shadow 0.5s;
-//   :hover {
-//     box-shadow: 0px 0px 5px 5px #888;
-//   }
-// `;
+const hoverBoxShadow = css`
+  transition: box-shadow 0.5s;
+  :hover {
+    box-shadow: 0px 0px 5px 5px #888;
+  }
+`;
 
 export const getServerSideProps = async () => {
   const courses = (await db("courses").select("*")).map((v) => ({ ...v }));
@@ -34,9 +34,7 @@ const OresQuestion = ({ courses, answer, setAnswer }) => {
           background-color: #79c4e3;
           color: white;
           transition: box-shadow 0.5s;
-          :hover {
-            box-shadow: 0px 0px 5px 5px #888;
-          }
+          ${hoverBoxShadow}
         `}
         onClick={() => {
           setAnswer(null);
@@ -64,9 +62,7 @@ const OresQuestion = ({ courses, answer, setAnswer }) => {
             margin-right: 5px;
             font-size: 1em;
             transition: box-shadow 0.5s;
-            :hover {
-              box-shadow: 0px 0px 5px 5px #888;
-            }
+            ${hoverBoxShadow}
             font-family: "Lato", sans-serif;
           `}
           value={courseSelected}
@@ -93,9 +89,7 @@ const OresQuestion = ({ courses, answer, setAnswer }) => {
           padding: 15px;
           font-size: 1.5em;
           transition: box-shadow 0.5s;
-          :hover {
-            box-shadow: 0px 0px 5px 5px #888;
-          }
+          ${hoverBoxShadow}
         `}
         onClick={() => {
           setAnswer(
@@ -247,9 +241,7 @@ const Home = ({ courses }) => {
           width: 250px;
           border-radius: 10px;
           transition: box-shadow 0.5s;
-          :hover {
-            box-shadow: 0px 0px 5px 5px #888;
-          }
+          ${hoverBoxShadow}
         `}
         alt="ores-eye"
         src="/eye.png"
@@ -258,7 +250,9 @@ const Home = ({ courses }) => {
       <OresResponse answer={answer} />
       <OresQuestion courses={courses} answer={answer} setAnswer={setAnswer} />
     </div>
-  );
+      <OresQuestion courses={courses} answer={answer} setAnswer={setAnswer} />
+      <OresQuestion courses={courses} answer={answer} setAnswer={setAnswer} />
+      <OresQuestion courses={courses} answer={answer} setAnswer={setAnswer} />
 };
 
 export default Home;
